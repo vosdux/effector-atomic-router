@@ -1,12 +1,16 @@
 import { useUnit } from "effector-react";
-import { $posts, getPostsFx, pageChanged, searchChanged } from "./model";
+import { $page, $posts, getPostsFx, pageChanged, searchChanged } from "./model";
 import { Card, Flex, Input, Pagination, Space, Spin } from "antd";
 import { Link } from "atomic-router-react";
 import { routes } from "@shared/config/routes";
 import { BaseLayout } from "@shared/components/BaseLayout";
 
 export const PostsPage = () => {
-  const [posts, postsPending] = useUnit([$posts, getPostsFx.pending]);
+  const [posts, postsPending, page] = useUnit([
+    $posts,
+    getPostsFx.pending,
+    $page,
+  ]);
 
   return (
     <BaseLayout>
@@ -43,6 +47,7 @@ export const PostsPage = () => {
             onChange={pageChanged}
             showSizeChanger={false}
             total={posts[0]?.total}
+            current={page}
           />
         </Space>
       </Flex>

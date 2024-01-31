@@ -28,6 +28,8 @@ export const PostPage = () => {
               layout="vertical"
             >
               <Form.Item hidden name="id"></Form.Item>
+              <Form.Item hidden name="total"></Form.Item>
+              <Form.Item hidden name="userId"></Form.Item>
               <Form.Item name="title" label="Title">
                 <Input />
               </Form.Item>
