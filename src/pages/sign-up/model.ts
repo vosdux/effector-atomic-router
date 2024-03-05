@@ -1,6 +1,7 @@
 import { signUp } from "@shared/api/auth";
 import { $token, tokenRecived } from "@shared/auth";
 import { routes } from "@shared/config/routes";
+import { showErrorNotificationFx } from "@shared/notification";
 import { redirect } from "atomic-router";
 import { createEffect, sample } from "effector";
 
@@ -20,4 +21,9 @@ sample({
 redirect({
   clock: signUpFx.doneData,
   route: routes.private.posts,
+});
+
+sample({
+  clock: signUpFx.failData,
+  target: showErrorNotificationFx,
 });

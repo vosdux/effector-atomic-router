@@ -1,3 +1,5 @@
+import { routes } from "@shared/config/routes";
+import { redirect } from "atomic-router";
 import { createEvent, createStore } from "effector";
 import { persist } from "effector-storage/local";
 
@@ -18,4 +20,9 @@ persist({
   deserialize(value) {
     return value;
   },
+});
+
+redirect({
+  clock: tokenExprired,
+  route: routes.auth.signIn,
 });
